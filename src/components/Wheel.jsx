@@ -69,7 +69,7 @@ const Wheel = ({resultId = 6, time = 5*1000, duration = 5*1000}) => {
                     {
                         wheelData.map((el) => 
                             <WheelSection 
-                                key={el.id} section={el}>
+                                key={el.id} section={el} isPrize={el.prize != 0}>
                             </WheelSection>)
                     }
                 </div>
