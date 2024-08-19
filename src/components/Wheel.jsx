@@ -2,6 +2,7 @@ import {useState, useEffect} from 'react'
 import PropTypes from 'prop-types'
 import {wheelData} from '../data'
 import WheelSection from './WheelSection';
+import SpinButton from '../assets/spin-button.png'
 const Wheel = ({resultId = 6, time = 5*1000, duration = 5*1000}) => {
     const [isSpinActive, setIsSpinActive] = useState(true)
     const [rotation, setRotation] = useState(0)
@@ -74,7 +75,9 @@ const Wheel = ({resultId = 6, time = 5*1000, duration = 5*1000}) => {
                     }
                 </div>
             </div>
-            <button className="spin-button" onClick={onSpin}>Spin</button>
+            <button className="spin-button" onClick={onSpin}>
+                <img src={SpinButton} alt="" />
+            </button>
         </div>
     </>
 
