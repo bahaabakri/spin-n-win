@@ -2,7 +2,7 @@ import {useState, useEffect} from 'react'
 import PropTypes from 'prop-types'
 import {wheelData} from '../data'
 import WheelSection from './WheelSection';
-import SpinButton from '../assets/spin-button.png'
+import Pointer from '../assets/pointer.png'
 const Wheel = ({resultId = 6, time = 5*1000, duration = 5*1000}) => {
     const [isSpinActive, setIsSpinActive] = useState(true)
     const [rotation, setRotation] = useState(0)
@@ -61,7 +61,7 @@ const Wheel = ({resultId = 6, time = 5*1000, duration = 5*1000}) => {
     const timeToStartMinutes = new Date(timeToStart).getMinutes()
     const timeToStartSeconds = new Date(timeToStart).getSeconds()
   return (
-    <>
+    <div className="wheel-container">
         {!isSpinActive && <p>Spin inactive {timeToStartMinutes} : {timeToStartSeconds}</p>}
         <div className={`wheel-wrapper`}>
             <div className={`wheel`} style={{transform: `rotate(${rotation}deg)`}}>
@@ -76,10 +76,11 @@ const Wheel = ({resultId = 6, time = 5*1000, duration = 5*1000}) => {
                 </div>
             </div>
             <button className="spin-button" onClick={onSpin}>
-                <img src={SpinButton} alt="" />
+                {/* <img src={SpinButton} alt="" /> */}
             </button>
+            <img className='pointer' src={Pointer} alt="" />
         </div>
-    </>
+    </div>
 
   );
 };
