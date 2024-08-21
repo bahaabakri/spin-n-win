@@ -1,9 +1,10 @@
 import {useState, useEffect} from 'react'
 import PropTypes from 'prop-types'
 import {wheelData} from '../data'
+import {formatClockDigitalNumbers} from '../helper'
 import WheelSection from './WheelSection';
 import Pointer from '../assets/pointer.png'
-const Wheel = ({resultId = 6, time = 5*1000, duration = 5*1000}) => {
+const Wheel = ({resultId = 6, time = 10*1000, duration = 10*1000}) => {
     const [isSpinActive, setIsSpinActive] = useState(true)
     const [rotation, setRotation] = useState(0)
     const [timeToStart, setTimeToStart] = useState(time)
@@ -62,7 +63,7 @@ const Wheel = ({resultId = 6, time = 5*1000, duration = 5*1000}) => {
     const timeToStartSeconds = new Date(timeToStart).getSeconds()
   return (
     <div className="wheel-container">
-        {!isSpinActive && <p>Spin inactive {timeToStartMinutes} : {timeToStartSeconds}</p>}
+        {!isSpinActive && <p className='spin-inactive'>Next Spin {formatClockDigitalNumbers(timeToStartSeconds, timeToStartMinutes)}</p>}
         <div className={`wheel-wrapper`}>
             <div className={`wheel`} style={{transform: `rotate(${rotation}deg)`}}>
                 {/* <div style={{ color: "red" }}>Hello</div> */}
@@ -75,10 +76,10 @@ const Wheel = ({resultId = 6, time = 5*1000, duration = 5*1000}) => {
                     }
                 </div>
             </div>
-            <button className="spin-button" onClick={onSpin}>
+            <button className={`spin-button ${isSpinActive && !isSpin ? 'active' : undefined}`} onClick={onSpin}>
                 {/* <img src={SpinButton} alt="" /> */}
             </button>
-            <img className='pointer' src={Pointer} alt="" />
+            <img className={`pointer ${isSpin ? 'active':undefined}`} src={Pointer} alt="" />
         </div>
     </div>
 
